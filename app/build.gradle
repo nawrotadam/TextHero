@@ -7,7 +7,7 @@ plugins {
 
 group = 'com.practice'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '17'
+sourceCompatibility = '11'
 
 configurations {
     compileOnly {
@@ -32,6 +32,10 @@ dependencies {
     compileOnly 'org.projectlombok:lombok'
     runtimeOnly 'com.h2database:h2'
     runtimeOnly 'org.postgresql:postgresql'
+    implementation 'org.liquibase:liquibase-core'
+    implementation 'com.auth0:java-jwt:3.18.2'
+    implementation 'commons-io:commons-io:2.11.0'
+    implementation 'junit:junit:4.13.1'
     annotationProcessor 'org.projectlombok:lombok'
     providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
@@ -44,6 +48,10 @@ dependencyManagement {
     imports {
         mavenBom "org.testcontainers:testcontainers-bom:${testcontainersVersion}"
     }
+}
+
+test {
+    useJUnitPlatform()
 }
 
 tasks.named('test') {
